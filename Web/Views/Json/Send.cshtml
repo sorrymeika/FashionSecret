@@ -1,0 +1,24 @@
+﻿@using SL.Util
+@using SL.Data
+@{
+    if (!SL.Web.Service.UserService.CheckAuth())
+    {
+        return;
+    }
+
+    RequestUtil req = new RequestUtil();
+
+    int transferId = req.Int("id", defaultValue: 1);
+    int accountId = req.Int("accountid");
+
+    if (req.HasError)
+    {
+        Json.Write(new { success = false, msg = req.FirstError, errors = req.GetErrors() }, Output);
+        return;
+    }
+
+    SQL.Execute("update [Transfer] set AccountID=@p0 where TransferID=@p1", transferId, accountId);
+
+    Json.Write(new { success = true }, Output);
+    return;
+}

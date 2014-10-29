@@ -1,0 +1,10 @@
+<header><a class="ico-back" hl href="/">派单</a> <em class="ico-save js_save" hl></em></header>
+<section class="main js_main">
+    <ul class="send_list js_list">
+    </ul>
+</section>
+<script id="list" type="text/template">
+    {%each(i,item) data%}
+        <li{%html i!=0?"":" class='check'"%} data-id="${item.AccountID}"><p>${item.AccountName}</p><p>${item.ShopName}</p></li>
+    {%/each%}
+</script>

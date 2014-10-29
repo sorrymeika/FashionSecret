@@ -1,0 +1,6 @@
+﻿@{
+    var data = SL.Data.SQL.Query("select ShopID,ShopName from Shop where Deleted=0 order by ShopName");
+
+    Json.Write(new { success = true, data = data }, Output);
+    return;
+}

@@ -1,0 +1,24 @@
+﻿@using SL.Util
+@using SL.Data
+@{
+    int accountId;
+    if (!SL.Web.Service.UserService.CheckAuth(out accountId))
+    {
+        return;
+    }
+
+    RequestUtil req = new RequestUtil();
+
+    int transferId = req.Int("id", defaultValue: 1);
+
+    if (req.HasError)
+    {
+        Json.Write(new { success = false, msg = req.FirstError, errors = req.GetErrors() }, Output);
+        return;
+    }
+
+    //SQL.Execute("delete from [Transfer] where AccountID=@p0 and TransferID=@p1", accountId, transferId);
+
+    Json.Write(new { success = true }, Output);
+    return;
+}

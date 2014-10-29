@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="anim.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="js/seajs/sea.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        seajs.config({
+            alias: {
+                "$": "zepto"
+            }
+        });
+
+        seajs.use(['$','sl/sl','app'],function($,sl,_app) {
+            var app=new sl.Application();
+
+            app.mapRoute({
+                '': 'index',
+                'start.html': 'start',
+                'menu/{name:\\w+}.html': 'menu',
+                'add.html': 'add',
+                'buyer.html': 'buyer',
+                'seller.html': 'seller',
+                'shop.html': 'shop',
+                'send/{shopid:\\d+}/{id:\\d+}.html': 'send',
+                'login.html': 'login',
+                'search.html': 'search',
+                'photo.html': 'photo',
+                'modify/{type:\\d+}/{id:\\d+}.html': 'modify',
+                'news/{id:\\d+}.html': 'news'
+            });
+
+            app.start();
+
+            if(_app.isAndroid)
+                setTimeout(function() {
+                    _app.exitLauncher(function() { });
+                },1500);
+
+        });
+    </script>
+</body>
+</html>
