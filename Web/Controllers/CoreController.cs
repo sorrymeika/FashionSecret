@@ -565,19 +565,6 @@ namespace SL.Web.Controllers
         #region 图片上传
         public ActionResult Upload(string dir = null)
         {
-            HttpPostedFileBase imgFile = Request.Files["imgFile"];
-            if (imgFile == null)
-            {
-                return showError("请选择文件。");
-            }
-
-            int maxSize = 5000000;
-
-            if (imgFile.InputStream == null || imgFile.InputStream.Length > maxSize)
-            {
-                return showError("上传文件大小超过限制。");
-            }
-
             //定义允许上传的文件扩展名
             Dictionary<string, string> extTable = new Dictionary<string, string>();
             extTable.Add("image", "gif,jpg,jpeg,png,bmp");
@@ -594,29 +581,18 @@ namespace SL.Web.Controllers
                 return showError("目录名不正确。");
             }
 
-            string dirDay = DateTime.Today.ToString("yy-MM-dd");
-            String dirPath = Server.MapPath("~/upload") + "\\" + dirName + "\\" + dirDay;
-            if (!Directory.Exists(dirPath))
+            RequestUtil req = new RequestUtil();
+            var file = req.File("imgFile", false, "请选择文件。", extTable[dirName], "上传文件扩展名是不允许的扩展名。\n只允许" + extTable[dirName] + "格式。");
+
+            if (req.HasError)
             {
-                Directory.CreateDirectory(dirPath);
+                return showError(req.FirstError);
             }
 
-            String fileName = imgFile.FileName;
-            String fileExt = Path.GetExtension(fileName).ToLower();
+            String src = file.Save();
+            String fileUrl = RequestFile.FullUrl(src);
 
-            if (String.IsNullOrEmpty(fileExt) || Array.IndexOf(((String)extTable[dirName]).Split(','), fileExt.Substring(1).ToLower()) == -1)
-            {
-                return showError("上传文件扩展名是不允许的扩展名。\n只允许" + ((String)extTable[dirName]) + "格式。");
-            }
-
-            String newFileName = DateTime.Now.ToString("yyyyMMddHHmmss_ffff", DateTimeFormatInfo.InvariantInfo) + fileExt;
-            String filePath = Path.Combine(dirPath, newFileName);
-
-            imgFile.SaveAs(filePath);
-
-            String fileUrl = "http://" + Request.Url.Authority + "/upload/" + dirName + "/" + dirDay + "/" + newFileName;
-
-            return Content(System.Web.Helpers.Json.Encode(new { error = 0, url = fileUrl }));
+            return Content(System.Web.Helpers.Json.Encode(new { error = 0, url = fileUrl, src = src }));
         }
 
         private ActionResult showError(string msg)

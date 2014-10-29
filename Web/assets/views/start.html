@@ -1,11 +1,16 @@
 ﻿<section class="main startwrap">
     <div class="step1">选出你最爱的时尚搭配</div>
     <ul class="startlist js_list">
-        <li><em></em><i></i></li>
-        <li><em></em><i></i></li>
-        <li><em></em><i></i></li>
-        <li><em></em><i></i></li>
-        <li><em></em><i></i></li>
     </ul>
-    <div class="startnow">等不及了吗？继续添加</div>
+    <div class="startnow">等不及了吗？继续添加时尚秘密！</div>
+    <div class="action"><b class="btn js_next" hl>马上下一步></b></div>
 </section>
+<div class="screen hide js_mask" style="background:rgba(0,0,0,.5);position:fixed;top: 0;left:0;-webkit-transition: opacity 200ms ease 0ms;display:none;"></div>
+<div class="startdialog hide js_dialog"><img src="" /> <p class="desc js_desc"></p>
+    <div class="action"><b class="btn js_accept" hl>确认</b> <b class="btn js_close" hl>关闭</b> </div>
+</div>
+<script id="list" type="text/template">
+    {%each(i,item) data%}
+        <li data-src="${item.Picture}" data-id="${item.CloseID}" data-name="${item.CloseName}"><em style="background-image:url(${item.Cover1})"></em><i style="background-image:url(${item.Cover})"></i></li>
+    {%/each%}
+</script>

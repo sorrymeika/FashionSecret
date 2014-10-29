@@ -124,33 +124,33 @@
     <Content Include="assets\js\util.js" />
     <Content Include="assets\js\util\base64.js" />
     <Content Include="assets\js\util\md5.js" />
-    <Content Include="assets\js\views\add.js" />
-    <Content Include="assets\js\views\about.js" />
+    <Content Include="assets\js\views\write.js" />
     <Content Include="assets\js\views\photo.js" />
     <Content Include="assets\js\views\modify.js" />
     <Content Include="assets\js\views\search.js" />
-    <Content Include="assets\js\views\shop.js" />
+    <Content Include="assets\js\views\share.js" />
     <Content Include="assets\js\views\seller.js" />
     <Content Include="assets\js\views\buyer.js" />
     <Content Include="assets\js\views\index.js" />
     <Content Include="assets\js\views\login.js" />
     <Content Include="assets\js\views\menu.js" />
     <Content Include="assets\js\views\send.js" />
+    <Content Include="assets\js\views\start.js" />
     <Content Include="assets\js\zepto.js" />
     <Content Include="assets\style.css" />
-    <Content Include="assets\views\add.html" />
-    <Content Include="assets\views\about.html" />
+    <Content Include="assets\views\write.html" />
     <Content Include="assets\views\buyer.html" />
     <Content Include="assets\views\photo.html" />
     <Content Include="assets\views\modify.html" />
     <Content Include="assets\views\shop.html" />
     <Content Include="assets\views\seller.html" />
-    <Content Include="assets\views\credit.html" />
+    <Content Include="assets\views\share.html" />
     <Content Include="assets\views\search.html" />
     <Content Include="assets\views\index.html" />
     <Content Include="assets\views\login.html" />
     <Content Include="assets\views\menu.html" />
     <Content Include="assets\views\send.html" />
+    <Content Include="assets\views\start.html" />
     <Content Include="Global.asax" />
     <Content Include="js\colorpicker\colorpicker.css" />
     <Content Include="js\colorpicker\colorpicker.js" />
@@ -484,6 +484,12 @@
   <ItemGroup>
     <Content Include="Views\Json\Modify.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Manage\Closes.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Json\Closes.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -501,7 +507,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>11404</DevelopmentServerPort>
+          <DevelopmentServerPort>11405</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

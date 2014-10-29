@@ -1,27 +1,9 @@
 ﻿@using SL.Util
 @{
-    if (!SL.Web.Service.UserService.CheckAuth())
-    {
-        return;
-    }
-
     RequestUtil req = new RequestUtil();
 
-    int accountId = SL.Web.Service.UserService.GetAccountID(req.String("account"));
-    int shopId = req.Int("shopId", false, "请选择门店");
-    string plateNumber = req.String("plateNumber", false, "请填写车牌号");
-    int type = req.Int("type", false, "请填写车牌号");
-    string carType = req.String("CarType", false, "请填写CarType");
-    string buyer = req.String("name", false, "请填写Buyer");
-    string buyerMobile = req.String("mobile", false, "请填写BuyerMobile");
-    string buyerAddress = req.String("address", false, "请填写BuyerAddress");
-
-    string seller = req.String("seller", false, "请填写Seller");
-    string sellerMobile = req.String("sellerMobile", false, "请填写SellerMobile");
-    string sellerAddress = req.String("sellerAddress", false, "请填写SellerAddress");
-
-    string transferRegion = req.String("region");
-    decimal price = req.Decimal("price");
+    int closeId = req.Int("closeId", false, "请选择喜爱的搭配");
+    string content = HttpUtility.UrlDecode(req.String("content", false, "请填写Content"));
 
     if (req.HasError)
     {
@@ -29,8 +11,11 @@
         return;
     }
 
-    SL.Data.SQL.Execute("insert into [Transfer] (AccountID,ShopID,PlateNumber,[Type],[Status],CarType,Buyer,BuyerMobile,BuyerAddress,Seller,SellerMobile,SellerAddress,TransferRegion,Price,AddTime) values (@p0,@p1,@p2,@p3,0,@p4,@p5,@p6,@p7,@p8,@p9,@p10,@p11,@p12,GetDate())", 0, shopId, plateNumber, type, carType, buyer, buyerMobile, buyerAddress, seller, sellerMobile, sellerAddress, transferRegion, price);
+    int noteId;
+    SL.Data.SQL.Execute("insert into [Note] (CloseID,NoteText) values (@p0,@p1)", out noteId, closeId, content);
 
-    Json.Write(new { success = true }, Output);
+    String result = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(noteId + "|" + closeId + "|" + DateTime.Now.ToString("yyMMdd")));
+
+    Json.Write(new { success = true, result = result }, Output);
     return;
 }

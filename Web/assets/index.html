@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta charset="utf-8" />
-    <title></title>
+    <title>猜猜我的时尚秘密</title>
     <link href="anim.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="js/seajs/sea.js"></script>
@@ -16,12 +16,14 @@
             }
         });
 
-        seajs.use(['$','sl/sl','app'],function($,sl,_app) {
+        seajs.use(['$','sl/sl','app'],function ($,sl,_app) {
             var app=new sl.Application();
 
             app.mapRoute({
                 '': 'index',
                 'start.html': 'start',
+                'write/{id:\\d+}.html': 'write',
+                'share/{data:.+}': 'share',
                 'menu/{name:\\w+}.html': 'menu',
                 'add.html': 'add',
                 'buyer.html': 'buyer',
@@ -38,8 +40,8 @@
             app.start();
 
             if(_app.isAndroid)
-                setTimeout(function() {
-                    _app.exitLauncher(function() { });
+                setTimeout(function () {
+                    _app.exitLauncher(function () { });
                 },1500);
 
         });

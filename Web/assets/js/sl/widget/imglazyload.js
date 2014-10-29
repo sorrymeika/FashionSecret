@@ -1,4 +1,4 @@
-﻿define(['$','extend/scrollStop','extend/ortchange'],function(require,exports,module) {
+﻿define(['$','extend/scrollStop','extend/ortchange'],function (require,exports,module) {
     var $=require('$'),
         tmpl=require('./../tmpl'),
         sl=require('./../base'),
@@ -13,13 +13,12 @@
             threshold: 0,
             container: window,
             urlName: 'data-url',
-            placeHolder: '',
             eventName: 'scrollStop',
             innerScroll: false,
             isVertical: true
         },
 
-        initialize: function() {
+        initialize: function () {
             var that=this,
                 opts=that.options,
                 $viewPort=$(opts.container),
@@ -29,7 +28,6 @@
                     win: [isVertical?'scrollY':'scrollX',isVertical?'innerHeight':'innerWidth'],
                     img: [isVertical?'top':'left',isVertical?'height':'width']
                 },
-                $plsHolder=$(opts.placeHolder).length?$(opts.placeHolder):null,
                 isImg=that.$el.is('img');
 
             !isWindow&&(OFFSET['win']=OFFSET['img']);   //若container不是window，则OFFSET中取值同img
@@ -42,36 +40,38 @@
 
             that.add(that.$el);
 
-            $(document).ready(function() {    //页面加载时条件检测
+            $(document).ready(function () {    //页面加载时条件检测
                 that.detect();
             });
 
-            !opts.innerScroll&&that.listenTo($(window),opts.eventName+' ortchange',function() {    //不是内滚时，在window上绑定事件
+            !opts.innerScroll&&that.listenTo($(window),opts.eventName+' ortchange',function () {    //不是内滚时，在window上绑定事件
                 that.detect();
             });
         },
 
-        add: function(el) {
+        add: function (el) {
             this.pedding=Array.prototype.slice.call($(this.pedding).add(el),0).reverse();    //更新pedding值，用于在页面追加图片
         },
 
-        _load: function(div) {     //加载图片，并派生事件
-            var $div=$(div),
+        _load: function (div) {     //加载图片，并派生事件
+            var that=this,
+                $div=$(div),
                 attrObj={},
-                $img=$div;
+                $img=$div,
+                opts=that.options;
 
-            if(!isImg) {
-                $.each($div.get(0).attributes,function() {   //若不是img作为容器，则将属性名中含有data-的均增加到图片上
+            if(!this.isImg) {
+                $.each($div.get(0).attributes,function () {   //若不是img作为容器，则将属性名中含有data-的均增加到图片上
                     ~this.name.indexOf('data-')&&(attrObj[this.name]=this.value);
                 });
                 $img=$('<img />').attr(attrObj);
             }
             $div.trigger('startload');
-            $img.on('load',function() {
-                !isImg&&$div.replaceWith($img);     //若不是img，则将原来的容器替换，若是img，则直接将src替换
+            $img.on('load',function () {
+                !that.isImg&&$div.replaceWith($img);     //若不是img，则将原来的容器替换，若是img，则直接将src替换
                 $div.trigger('loadcomplete');
                 $img.off('load');
-            }).on('error',function() {     //图片加载失败处理
+            }).on('error',function () {     //图片加载失败处理
                 var errorEvent=$.Event('error');       //派生错误处理的事件
                 $div.trigger(errorEvent);
                 errorEvent.defaultPrevented||pedding.push(div);
@@ -80,7 +80,7 @@
 
         },
 
-        isInViewport: function(offset) {      //图片出现在可视区的条件
+        isInViewport: function (offset) {      //图片出现在可视区的条件
             var opts=this.options,
                 viewOffset=this.isWindow?window:this.$viewPort.offset(),
                 OFFSET=this.OFFSET,
@@ -89,7 +89,7 @@
             return viewTop>=offset[OFFSET.img[0]]-opts.threshold-viewHeight&&viewTop<=offset[OFFSET.img[0]]+offset[OFFSET.img[1]];
         },
 
-        detect: function() {
+        detect: function () {
             var that=this,i,$image,offset,div,pedding=that.pedding;
             for(i=pedding.length;i--;) {
                 $image=$(div=pedding[i]);
