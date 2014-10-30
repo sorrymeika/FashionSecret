@@ -1,4 +1,4 @@
-﻿define('base64',[],function () {
+﻿define([],function () {
 
     //下面是64个基本的编码
     var base64EncodeChars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

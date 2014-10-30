@@ -16,24 +16,17 @@
             }
         });
 
-
-
         seajs.use(['$','sl/sl','app'],function ($,sl,_app) {
-            var m=location.hash.match("/share/(.+)");
-            if(m&&m[1]) {
-                location.href="index1.html#/?share="+m[1];
-                return;
-            }
-
             var app=new sl.Application();
 
             app.mapRoute({
-                '': 'index',
+                '': 'start1',
                 'start.html': 'start',
                 'write/{id:\\d+}.html': 'write',
                 'share/{data:.+}': 'share',
                 'prize/{data:.+}': 'prize',
                 'sorry.html': 'sorry',
+                'wrong.html': 'wrong',
                 'menu/{name:\\w+}.html': 'menu',
                 'add.html': 'add',
                 'seller.html': 'seller',

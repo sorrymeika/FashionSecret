@@ -1,0 +1,15 @@
+﻿<section class="main startwrap">
+    <div class="step1">猜一猜哪套是我最爱的工作装？<br>猜中了就能看到我内心的小秘密哦！</div>
+    <ul class="startlist js_list">
+    </ul>
+    <div class="action"><b class="btn js_next" hl>马上下一步></b></div>
+</section>
+<div class="screen hide js_mask" style="background: rgba(0,0,0,.5); position: fixed; top: 0; left: 0; -webkit-transition: opacity 200ms ease 0ms; display: none;"></div>
+<div class="startdialog hide js_dialog"><img src="" /> <p class="desc js_desc"></p>
+    <div class="action"><b class="btn js_accept" hl>确认</b> <b class="btn js_close" hl>关闭</b> </div>
+</div>
+<script id="list" type="text/template">
+    {%each(i,item) data%}
+        <li data-src="${item.Picture}" data-id="${item.CloseID}" data-open="${item.Url}" data-name="${item.CloseName}"><em style="background-image:url(${item.Cover1})"></em><i style="background-image:url(${item.Cover})"></i></li>
+    {%/each%}
+</script>

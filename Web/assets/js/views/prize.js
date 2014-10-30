@@ -6,49 +6,54 @@
         Loading=require('sl/widget/loading');
 
     module.exports=sl.Activity.extend({
-        template: 'views/share.html',
+        template: 'views/prize.html',
         events: {
             'tap .js_get': function () {
                 this.$('.js_dialog,.js_mask').show().removeClass('hide');
             },
             'tap .js_accept': function () {
                 var that=this,
+                    code=base64.decode(that.route.data.data).split('|'),
                     data={
-                        noteId: base64.decode(that.route.data.data).split('|')[0],
-                        name: that.$('.js_name').val(),
-                        email: that.$('.js_email').val(),
-                        mobile: that.$('.js_mobile').val()
+                        userId: code[0],
+                        prizeId: code[1],
+                        receiver: that.$('.js_receiver').val(),
+                        phone: that.$('.js_phone').val(),
+                        zip: that.$('.js_zip').val(),
+                        address: that.$('.js_address').val()
                     };
 
-                if(!data.name) {
-                    sl.tip('请填写姓名');
+                if(!data.receiver) {
+                    sl.tip('请填写收件人');
                     return;
                 }
-                if(!data.email) {
-                    sl.tip('请填写邮箱');
+                if(!data.phone) {
+                    sl.tip('请填写电话');
                     return;
                 }
-                if(!data.mobile) {
-                    sl.tip('请填写手机');
+                if(!data.zip) {
+                    sl.tip('请填写邮编');
+                    return;
+                }
+                if(!data.address) {
+                    sl.tip('请填写地址');
                     return;
                 }
 
                 !that.loading&&(that.loading=new Loading(that.$el));
                 that.loading.load({
-                    url: '/json/play',
+                    url: '/json/address',
                     type: 'POST',
                     checkData: false,
                     data: data,
                     success: function (res) {
                         this.hideLoading();
 
-                        if(res.prize) {
-                            sl.common.prize=res.prize;
-                            localStorage&&localStorage.setItem('prize',JSON.stringify(res.prize));
-                            that.forward('/prize/'+res.result);
-                        } else {
-                            that.forward('/sorry.html');
-                        }
+                        sl.tip('填写成功，感谢您的参与！')
+
+                        that.$('.js_dialog,.js_mask').addClass('hide').one($.fx.transitionEnd,function () {
+                            this.style.display='none';
+                        });
 
                     },
                     error: function (res) {
@@ -59,7 +64,11 @@
             }
         },
         onCreate: function () {
-            var that=this;
+            var that=this,
+                data=sl.common.prize||JSON.parse(localStorage.getItem('prize'));
+
+            that.$('.js_text').html(data.PrizeName);
+            that.$('.js_img').attr('src',data.Picture);
         },
         onStart: function () {
         },

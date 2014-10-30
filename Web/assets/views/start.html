@@ -11,6 +11,6 @@
 </div>
 <script id="list" type="text/template">
     {%each(i,item) data%}
-        <li data-src="${item.Picture}" data-id="${item.CloseID}" data-name="${item.CloseName}"><em style="background-image:url(${item.Cover1})"></em><i style="background-image:url(${item.Cover})"></i></li>
+        <li data-src="${item.Picture}" data-id="${item.CloseID}" data-open="${item.Url}" data-name="${item.CloseName}"><em style="background-image:url(${item.Cover1})"></em><i style="background-image:url(${item.Cover})"></i></li>
     {%/each%}
 </script>

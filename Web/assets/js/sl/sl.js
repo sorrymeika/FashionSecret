@@ -182,7 +182,7 @@
 
                 url=url.substr(0,index);
 
-                query.replace(/(?:^|&)([^=&]+)=([^=&]*)/g,function (r0,r1,r2) {
+                query.replace(/(?:^|&)([^=&]+)=([^&]*)/g,function (r0,r1,r2) {
                     queries[r1]=decodeURIComponent(r2);
                     return '';
                 })

@@ -1,11 +1,12 @@
-﻿define(['$','sl/sl','app','sl/widget/loading'],function (require,exports,module) {
+﻿define(['$','sl/sl','app','sl/widget/loading','util/base64'],function (require,exports,module) {
     var $=require('$'),
         sl=require('sl/sl'),
+        base64=require('util/base64'),
         app=require('app'),
         Loading=require('sl/widget/loading');
 
     module.exports=sl.Activity.extend({
-        template: 'views/start.html',
+        template: 'views/start1.html',
         events: {
             'tap .js_list li': function (e) {
                 var target=$(e.currentTarget),
@@ -42,9 +43,31 @@
                 window.open(this.$('.js_list li.curr').data('open'));
             },
             'tap .js_accept': function () {
-                var $target=this.$('.js_list li.curr');
+                var that=this,
+                    code=base64.decode(that.route.query['share']).split('|');
 
-                this.forward('/write/'+$target.data('id')+'.html');
+                that.loading.load({
+                    url: '/json/guess',
+                    checkData: false,
+                    data: {
+                        noteid: code[0],
+                        closeId: that.$('.js_list li.curr').data('id')
+                    },
+                    success: function (res) {
+                        this.hideLoading();
+
+                        if(res.result) {
+                            that.forward('/right.html');
+                        } else {
+                            that.forward('/wrong.html');
+                        }
+                    },
+                    error: function (res) {
+                        this.hideLoading();
+                        sl.tip(res.msg);
+                    }
+                });
+
             }
         },
         onCreate: function () {
@@ -59,6 +82,10 @@
                 success: function (res) {
                     this.hideLoading();
                     that.$list.html(that.tmpl("list",res));
+                },
+                error: function (res) {
+                    this.hideLoading();
+                    sl.tip(res.msg);
                 }
             });
         },

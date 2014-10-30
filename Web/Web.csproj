@@ -72,6 +72,7 @@
     <Compile Include="Service\PaymentService.cs" />
     <Compile Include="Service\_EmptyService.cs" />
     <Compile Include="Service\UserService.cs" />
+    <Compile Include="Service\SettingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\anim.css" />
@@ -80,6 +81,7 @@
     <Content Include="assets\images\launch.png" />
     <Content Include="assets\images\login.png" />
     <Content Include="assets\images\menu_hd.png" />
+    <Content Include="assets\images\prizebg.png" />
     <Content Include="assets\images\site.png" />
     <Content Include="assets\index.html" />
     <Content Include="assets\js\app.js" />
@@ -125,23 +127,24 @@
     <Content Include="assets\js\util\base64.js" />
     <Content Include="assets\js\util\md5.js" />
     <Content Include="assets\js\views\write.js" />
-    <Content Include="assets\js\views\photo.js" />
-    <Content Include="assets\js\views\modify.js" />
+    <Content Include="assets\js\views\prize.js" />
+    <Content Include="assets\js\views\wrong.js" />
     <Content Include="assets\js\views\search.js" />
     <Content Include="assets\js\views\share.js" />
-    <Content Include="assets\js\views\seller.js" />
     <Content Include="assets\js\views\buyer.js" />
     <Content Include="assets\js\views\index.js" />
     <Content Include="assets\js\views\login.js" />
     <Content Include="assets\js\views\menu.js" />
     <Content Include="assets\js\views\send.js" />
     <Content Include="assets\js\views\start.js" />
+    <Content Include="assets\js\views\sorry.js" />
+    <Content Include="assets\js\views\start1.js" />
     <Content Include="assets\js\zepto.js" />
     <Content Include="assets\style.css" />
     <Content Include="assets\views\write.html" />
-    <Content Include="assets\views\buyer.html" />
-    <Content Include="assets\views\photo.html" />
-    <Content Include="assets\views\modify.html" />
+    <Content Include="assets\views\sorry.html" />
+    <Content Include="assets\views\prize.html" />
+    <Content Include="assets\views\wrong.html" />
     <Content Include="assets\views\shop.html" />
     <Content Include="assets\views\seller.html" />
     <Content Include="assets\views\share.html" />
@@ -151,6 +154,8 @@
     <Content Include="assets\views\menu.html" />
     <Content Include="assets\views\send.html" />
     <Content Include="assets\views\start.html" />
+    <Content Include="assets\index1.html" />
+    <Content Include="assets\views\start1.html" />
     <Content Include="Global.asax" />
     <Content Include="js\colorpicker\colorpicker.css" />
     <Content Include="js\colorpicker\colorpicker.js" />
@@ -467,28 +472,25 @@
     <Content Include="Views\Json\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Json\Shop.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Json\Transfer.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Json\User.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Json\Send.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Json\Del.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Json\Modify.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Manage\Closes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Json\Closes.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Manage\Address.cshtml" />
+    <Content Include="Views\Manage\Email.cshtml" />
+    <Content Include="Views\Manage\Prizes.cshtml" />
+    <Content Include="Views\Manage\Settings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Json\Play.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Json\Address.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Json\Guess.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

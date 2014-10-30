@@ -21,3 +21,37 @@ CloseID int,
 NoteText varchar(1000),
 AddTime DateTime default GetDate()
 )
+alter table Note add UserID int default 0
+
+create table Users (
+UserID int primary key identity,
+Email varchar(200),
+Mobile varchar(20),
+Name varchar(20),
+CreationTime datetime,
+PrizeID int
+)
+
+create table Prize(
+PrizeID int primary key identity,
+PrizeName varchar(300),
+Picture varchar(255),
+Deleted bit,
+Number varchar(200)
+)
+
+create table Address(
+AddressID int primary key identity,
+PrizeID int,
+UserID int,
+Receiver varchar(20),
+Address varchar(400),
+Phone varchar(30),
+Zip varchar(6),
+CreationTime datetime
+)
+
+create table Settings(
+Name varchar(30) primary key,
+Value varchar(200)
+)
