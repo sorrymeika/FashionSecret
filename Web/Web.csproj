@@ -126,6 +126,9 @@
     <Content Include="assets\js\util.js" />
     <Content Include="assets\js\util\base64.js" />
     <Content Include="assets\js\util\md5.js" />
+    <Content Include="assets\js\views\prize1.js" />
+    <Content Include="assets\js\views\sorry1.js" />
+    <Content Include="assets\js\views\right.js" />
     <Content Include="assets\js\views\write.js" />
     <Content Include="assets\js\views\prize.js" />
     <Content Include="assets\js\views\wrong.js" />
@@ -135,12 +138,14 @@
     <Content Include="assets\js\views\index.js" />
     <Content Include="assets\js\views\login.js" />
     <Content Include="assets\js\views\menu.js" />
-    <Content Include="assets\js\views\send.js" />
     <Content Include="assets\js\views\start.js" />
     <Content Include="assets\js\views\sorry.js" />
     <Content Include="assets\js\views\start1.js" />
     <Content Include="assets\js\zepto.js" />
     <Content Include="assets\style.css" />
+    <Content Include="assets\views\sorry1.html" />
+    <Content Include="assets\views\prize1.html" />
+    <Content Include="assets\views\right.html" />
     <Content Include="assets\views\write.html" />
     <Content Include="assets\views\sorry.html" />
     <Content Include="assets\views\prize.html" />
@@ -152,7 +157,6 @@
     <Content Include="assets\views\index.html" />
     <Content Include="assets\views\login.html" />
     <Content Include="assets\views\menu.html" />
-    <Content Include="assets\views\send.html" />
     <Content Include="assets\views\start.html" />
     <Content Include="assets\index1.html" />
     <Content Include="assets\views\start1.html" />
@@ -491,6 +495,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Json\Guess.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Json\Secret.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
