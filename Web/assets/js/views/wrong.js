@@ -1,4 +1,4 @@
-﻿define(['$','sl/sl','app','sl/widget/dropdown','sl/widget/loading'],function (require,exports,module) {
+﻿define(['$','sl/sl','app','sl/widget/dropdown','sl/widget/loading'],function(require,exports,module) {
     var $=require('$'),
         sl=require('sl/sl'),
         Dropdown=require('sl/widget/dropdown'),
@@ -6,25 +6,28 @@
         app=require('app');
 
     module.exports=sl.Activity.extend({
-        template: 'views/write.html',
+        template: 'views/wrong.html',
         events: {
-            'tap .js_save': 'save'
+            'tap .js_save': 'save',
+            'tap .js_join': function() {
+                location.href="index.html";
+            }
         },
-        onCreate: function () {
+        onCreate: function() {
             var that=this;
 
         },
-        onStart: function () {
+        onStart: function() {
         },
-        onResume: function () {
+        onResume: function() {
         },
-        onShow: function () {
+        onShow: function() {
         },
-        onDestory: function () {
+        onDestory: function() {
             this.loading&&this.loading.destory();
         },
 
-        save: function () {
+        save: function() {
             var that=this,
                 content=that.$('textarea').val();
 
@@ -42,12 +45,12 @@
                     closeId: that.route.data.id,
                     content: encodeURIComponent(content)
                 },
-                success: function (res) {
+                success: function(res) {
                     this.hideLoading();
 
                     that.forward('/share/'+res.result);
                 },
-                error: function (res) {
+                error: function(res) {
                     this.hideLoading();
                     sl.tip(res.msg);
                 }
@@ -55,7 +58,7 @@
 
         },
 
-        photo: function () {
+        photo: function() {
             this.forward('/photo.html');
         }
 
