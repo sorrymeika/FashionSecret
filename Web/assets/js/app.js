@@ -99,7 +99,7 @@
         },
         isDevelopment: navigator.platform=="Win32"||navigator.platform=="Win64",
         url: function(url) {
-            return /^http\:\/\//.test(url)?url:navigator.platform=="Win32"||navigator.platform=="Win64"?url:('http://photo.ie1e.com'+url);
+            return /^http\:\/\//.test(url)?url:navigator.platform=="Win32"||navigator.platform=="Win64"?url:(url);
         },
         post: function() {
             var args=slice.call(arguments),
