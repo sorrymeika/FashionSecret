@@ -1,5 +1,5 @@
 ﻿html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; font-style: normal; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); list-style: none; box-sizing: border-box; }
-body, html { width: 100%; overflow-x: hidden; }
+body, html { width: 100%; overflow-x: hidden; background-color: #f5f5f5; }
 img { background: #e7e7e7 url(images/imgbg.png) center center no-repeat; background-size: 60% auto; }
 a { text-decoration: none; color: #333; }
 .viewport { position: relative; overflow-x: hidden; width: 100%; display: -webkit-box; background: #fff; }
@@ -152,28 +152,32 @@ ul.table li > p { display: table-cell; text-align: center; padding-top: 5px; }
 .startwrap, .writewrap, .prizewrap, .wrongwrap { background-color: #f5f5f5; padding-top: 1px; }
 .step1, .step2, .step3 { text-align: center; text-decoration: underline; font-size: 18px; position: relative; padding-top: 32px; }
 .step1:before, .step2:before, .step3:before { content: ''; display: block; width: 60px; height: 30px; background: url(images/site.png) -75px -100px no-repeat; background-size: 320px auto; left: 50%; margin: -22px 0 0 -30px; position: absolute; z-index: 0; }
+.step1.nopic:before{ background-image:url(about:blank); }
 .step2:before { background-position-y: -130px; width: 66px; }
 .step3:before { background-position: 0px -275px; width: 66px; }
 
 .step3 .ico_share { display: inline-block; background: url(images/site.png) -75px -275px no-repeat; background-size: 320px auto; width: 37px; height: 20px; }
 
-.startlist { width: 100%; overflow: hidden; padding-top: 15px; padding-left: 16px; -webkit-transform-style: preserve-3d; }
+.startlist { width: 100%; overflow: hidden; padding-top: 35px; padding-bottom: 73px; padding-left: 16px; -webkit-transform-style: preserve-3d; position: relative; }
 .startlist li { position: relative; width: 47%; margin-right: 2%; margin-bottom: 6px; float: left; }
 .startlist li:before { content: ''; display: block; padding-top: 100%; }
 .startlist li i, .startlist li em { background: no-repeat; background-size: 100% 100%; width: 100%; position: absolute; top: 0; left: 0; bottom: 0; right: 0; -webkit-transition: all 200ms ease 0ms; }
+.startlist li b {}
 .startlist li em { -webkit-transition: all 200ms ease 200ms; -webkit-transform: rotateY(90deg); }
 .startlist li.curr em { -webkit-transform: rotateY(0deg); }
 .startlist li.curr i { -webkit-transform: rotateY(90deg); }
+.startlist:after { display: block; background: url(images/bottom.png) no-repeat; background-size: 100% 100%; width:158px; height:73px; content: ''; clear: both; position: absolute; bottom: 20px; z-index: -1; left: 50%; margin-left: -79px; }
 
 .startnow { font-family: 微软雅黑; font-size: 14px; text-align: center; margin-top: 5px; }
 .startwrap .action { text-align: center; margin-top: 10px; }
-.startdialog { width: 243px; height: 333px; position: absolute; top: 50%; left: 50%; margin-top: -166px; margin-left: -121px; background: #fff; padding: 15px 29px 0 31px; -webkit-transition: opacity 200ms ease 0ms; display: none; }
-.startdialog img { display: block; width: 180px; height: 222px; }
+.startdialog { width: 285px; height: 333px; position: absolute; top: 50%; left: 50%; margin-top: -166px; margin-left: -142px; background: #fff; padding: 15px 29px 0 31px; -webkit-transition: opacity 200ms ease 0ms; display: none; }
+.startdialog img { display: block; width: 225px; min-height: 222px; }
 .startdialog .desc { font-size: 12px; padding: 10px 0; }
-.startdialog .action { text-align: center; display: -webkit-box; }
-.startdialog .action .btn { -webkit-box-flex: 1; display: block; }
-.startdialog .action .btn:first-child { margin-right: 5px; }
-.startdialog .action .btn:last-child { margin-left: 5px; }
+.startdialog .action { text-align: center; }
+.startdialog .action .btn {  }
+.startdialog .action p { margin-top: 12px; font-size: 12px;  }
+.startdialog .btn_close{ padding-top: 8px;padding-left: 10px;position: absolute; right: -20px; top: -20px;width: 44px; height: 44px; display: block; }
+.startdialog .btn_close:before { display: block; content: ''; background: url(images/site.png) -25px 0px no-repeat; background-size: 320px auto; width: 25px; height: 25px;   }
 
 .writenote { -webkit-box-shadow: -3px 4px 8px #e3e3e3; margin: 36px 37px 0 37px; padding: 10px 10px 0 10px; background: #fff; height: 250px; }
 .writenote:before { display: block; content: ''; margin: 0 auto; background: url(images/site.png) -150px -100px no-repeat; background-size: 320px auto; width: 120px; height: 35px; }
@@ -186,13 +190,22 @@ ul.table li > p { display: table-cell; text-align: center; padding-top: 5px; }
 .sharenote1 { font-size: 14px; margin-top: 17px; }
 .sharewrap .action { margin-top: 15px; text-align: center; }
 
-.sharedialog, .addressdialog { width: 243px; height: 254px; position: absolute; top: 50%; left: 50%; margin-top: -127px; margin-left: -121px; background: #fff; padding: 15px 29px 0 31px; -webkit-transition: opacity 200ms ease 0ms; display: none; }
+.sharedialog, .addressdialog { width: 243px; height: 254px; position: absolute; top: 50%; left: 50%; margin-top: -127px; margin-left: -121px; background: #fff; padding: 15px 0 0 0; -webkit-transition: opacity 200ms ease 0ms; display: none; }
 .sharedialog .hd, .addressdialog .hd { text-align: center; text-decoration: underline; font-weight: bold; color: #000; font-size: 16px; }
-.sharedialog ul, .addressdialog ul { padding-top: 15px; }
+.sharedialog ul, .addressdialog ul { padding-top: 15px; margin: 0 29px 0 31px; }
 .sharedialog li, .addressdialog li { margin-top: 10px; padding-right: 10px; }
 .sharedialog li input, .addressdialog li input { background: #f7f5f6; border: 0; height: 33px; padding-left: 10px; width: 100%; }
 .sharedialog .action, .addressdialog .action { text-align: center; margin-top: 12px; }
 .sharedialog .btn_red, .addressdialog .btn_red { }
+
+.sharedialog .btn_close{ padding-top: 8px;padding-left: 10px;position: absolute; right: -20px; top: -20px;width: 44px; height: 44px; display: block; }
+.sharedialog .btn_close:before { display: block; content: ''; background: url(images/site.png) -25px 0px no-repeat; background-size: 320px auto; width: 25px; height: 25px;   }
+
+.finishimg { margin: 0 auto; width: 210px; padding-top: 0px; }
+.finishimg:before { width: 210px; height:150px;background: url(images/finish.png) 0px 0px no-repeat; background-size: 100% auto; content: ''; display: block; }
+
+.finishimg1 { padding-top: 0px; }
+.sharedialog p { text-align: center; font-size: 13px; text-decoration: underline; }
 
 .addressdialog { width: 300px; height: 300px; margin-top: -150px; margin-left: -150px; }
 

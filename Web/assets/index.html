@@ -16,9 +16,7 @@
             }
         });
 
-
-
-        seajs.use(['$','sl/sl','app'],function ($,sl,_app) {
+        seajs.use(['$','sl/sl','app'],function($,sl,_app) {
             var m=location.hash.match("/share/(.+)");
             if(m&&m[1]) {
                 location.href="index1.html#/?share="+m[1];
@@ -49,6 +47,23 @@
             app.start();
 
         });
+    </script>
+    <script>
+        document.addEventListener('WeixinJSBridgeReady',function onBridgeReady() {
+
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline',function(argv) {
+                WeixinJSBridge.invoke('shareTimeline',{
+                    "img_url": 'http://222.73.41.2:8085/assets/images/bottom.png',
+                    "img_width": "160",
+                    "img_height": "160",
+                    "link": location.href,
+                    "desc": "猜猜我的时尚秘密",
+                    "title": "猜猜我的时尚秘密"
+                },function(res) { });
+            });
+        },false)
+    </script>
     </script>
 </body>
 </html>

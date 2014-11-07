@@ -1,9 +1,10 @@
-﻿define(['$','sl/sl','app','sl/widget/dialog','util/base64'],function(require,exports,module) {
+﻿define(['$','sl/sl','app','sl/widget/dialog','sl/widget/loading','util/base64'],function(require,exports,module) {
     var $=require('$'),
         sl=require('sl/sl'),
         base64=require('util/base64'),
         app=require('app'),
-        Dialog=require('sl/widget/dialog');
+        Dialog=require('sl/widget/dialog'),
+        Loading=require('sl/widget/loading');
 
     module.exports=sl.Activity.extend({
         template: 'views/prize1.html',
@@ -15,6 +16,7 @@
             },
             'tap .js_get': function() {
                 this.$('.js_dialog,.js_mask').show().removeClass('hide');
+                this.$('.js_dialog').css({ top: Math.max((window.innerHeight-this.$('.js_dialog').height())/2,0),marginTop: 0 });
             },
             'tap .js_accept': function() {
                 var that=this,

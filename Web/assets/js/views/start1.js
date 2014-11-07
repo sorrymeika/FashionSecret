@@ -22,25 +22,17 @@
                     next.find('em').one($.fx.transitionEnd,function() {
                         next.find('em,i').css({ '-webkit-transition-delay': '' });
                     });
+                } else {
+                    this.next();
                 }
             },
-            'tap .js_next': function() {
-                var $target=this.$('.js_list li.curr');
-                if(!$target.length) {
-                    sl.tip("请先选择您喜爱的时尚搭配");
-                    return;
-                }
-                this.$('.js_dialog img').attr({ src: $target.data('src') });
-                this.$('.js_dialog .js_desc').html($target.data('name'));
-                this.$('.js_dialog,.js_mask').show().removeClass('hide');
+            'tap .js_desc,.js_dialog img': function() {
+                window.open(this.$('.js_list li.curr').data('open'));
             },
             'tap .js_close': function() {
                 this.$('.js_dialog,.js_mask').addClass('hide').one($.fx.transitionEnd,function() {
                     this.style.display='none';
                 });
-            },
-            'tap .js_desc,.js_dialog img': function() {
-                window.open(this.$('.js_list li.curr').data('open'));
             },
             'tap .js_accept': function() {
                 var that=this,
@@ -94,6 +86,32 @@
         onResume: function() {
         },
         onDestory: function() {
+        },
+        next: function() {
+            var $target=this.$('.js_list li.curr');
+            if(!$target.length) {
+                sl.tip("请先选择她喜爱的时尚搭配");
+                return;
+            }
+            this.$('.js_dialog img').attr({ src: $target.data('src') });
+
+            var html="",
+                    arr=$target.data('name').split('|'),
+                    urls=$target.data('open').split('|'),
+                    len=arr.length;
+
+            $.each(arr,function(i,item) {
+                html+='<em data-openurl="'+urls[i]+'">'+item+'</em>'+(len==i+1?"":" | ");
+            });
+
+            this.$('.js_dialog .js_desc').html(html);
+            this.$('.js_dialog,.js_mask').show().removeClass('hide');
+            this.$('.js_dialog').css({ top: Math.max((window.innerHeight-this.$('.js_dialog').height())/2,0),marginTop: 0,height: 'auto','padding-bottom': '20px' });
+        },
+        'tap .js_close': function() {
+            this.$('.js_dialog,.js_mask').addClass('hide').one($.fx.transitionEnd,function() {
+                this.style.display='none';
+            });
         }
     });;
 });

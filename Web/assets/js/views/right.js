@@ -10,6 +10,15 @@
         events: {
             'tap .js_get': function() {
                 this.$('.js_dialog,.js_mask').show().removeClass('hide');
+                this.$('.js_dialog').css({ top: Math.max((window.innerHeight-this.$('.js_dialog').height())/2,0),marginTop: 0 });
+            },
+            'tap .js_close': function() {
+                this.$('.js_dialog,.js_mask').addClass('hide').one($.fx.transitionEnd,function() {
+                    this.style.display='none';
+                });
+            },
+            'tap .js_goindex': function() {
+                location.href="index.html";
             },
             'tap .js_accept': function() {
                 var that=this,
@@ -42,13 +51,15 @@
                     success: function(res) {
                         this.hideLoading();
 
-                        if(res.prize) {
-                            sl.common.prize=res.prize;
-                            localStorage&&localStorage.setItem('prize',JSON.stringify(res.prize));
-                            that.forward('/prize1/'+res.result);
-                        } else {
-                            that.forward('/sorry1.html');
-                        }
+                        that.$('.js_dialog').html('<b class="btn_close js_close"></b><div class="finishimg finishimg1"></div><p class="js_goindex">想要说出自己的时尚秘密？<br>也来参加活动吧！>>></p>');
+
+                        //                        if(res.prize) {
+                        //                            sl.common.prize=res.prize;
+                        //                            localStorage&&localStorage.setItem('prize',JSON.stringify(res.prize));
+                        //                            that.forward('/prize1/'+res.result);
+                        //                        } else {
+                        //                            that.forward('/sorry1.html');
+                        //                        }
                     },
                     error: function(res) {
                         this.hideLoading();

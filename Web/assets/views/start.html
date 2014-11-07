@@ -2,12 +2,14 @@
     <div class="step1">选出你最爱的时尚搭配</div>
     <ul class="startlist js_list">
     </ul>
-    <div class="startnow">等不及了吗？继续添加时尚秘密！</div>
-    <div class="action"><b class="btn js_next" hl>马上下一步></b></div>
 </section>
-<div class="screen hide js_mask" style="background:rgba(0,0,0,.5);position:fixed;top: 0;left:0;-webkit-transition: opacity 200ms ease 0ms;display:none;"></div>
-<div class="startdialog hide js_dialog"><img src="" /> <p class="desc js_desc"></p>
-    <div class="action"><b class="btn js_accept" hl>确认</b> <b class="btn js_close" hl>关闭</b> </div>
+<div class="screen hide js_mask" style="background: rgba(0,0,0,.5); position: fixed; top: 0; left: 0; -webkit-transition: opacity 200ms ease 0ms; display: none;"></div>
+<div class="startdialog hide js_dialog">
+    <b class="btn_close js_close"></b> 
+    <img src="" />
+    <p class="desc js_desc"></p>
+    <div class="action"><b class="btn js_accept" hl>马上下一步</b>
+    <p>等不及了吗？继续添加时尚秘密！</p> </div>
 </div>
 <script id="list" type="text/template">
     {%each(i,item) data%}

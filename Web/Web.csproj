@@ -76,7 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\anim.css" />
+    <Content Include="assets\images\bottom.png" />
     <Content Include="assets\images\dataloading.png" />
+    <Content Include="assets\images\finish.png" />
     <Content Include="assets\images\imgbg.png" />
     <Content Include="assets\images\launch.png" />
     <Content Include="assets\images\login.png" />
