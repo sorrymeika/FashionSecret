@@ -63,20 +63,16 @@
                     "desc": "猜猜我的时尚秘密",
                     "title": "猜猜我的时尚秘密"
                 },function(res) { });
+            });
 
-                // 发送给好友
-                WeixinJSBridge.on('menu:share:appmessage',function(argv) {
-                    WeixinJSBridge.invoke('sendAppMessage',{
-                        "img_url": 'http://222.73.41.2:8085/assets/images/bottom.png',
-                        "img_width": "160",
-                        "img_height": "160",
-                        "link": location.href,
-                        "desc": "猜猜我的时尚秘密",
-                        "title": "猜猜我的时尚秘密"
-                    },function(res) {
-                    })
-                });
-
+            // 发送给好友
+            WeixinJSBridge.on('menu:share:appmessage',function(argv) {
+                WeixinJSBridge.invoke('sendAppMessage',{
+                    "img_url": 'http://222.73.41.2:8085/assets/images/bottom.png',
+                    "link": location.href,
+                    "desc": "猜猜我的时尚秘密",
+                    "title": "猜猜我的时尚秘密"
+                },function(res) { })
             });
         },false)
     </script>
