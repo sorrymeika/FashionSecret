@@ -111,6 +111,7 @@ footer { position: fixed; bottom: 0px; left: 0px; width: 100%; z-index: 200; ove
 
 .main { }
 .content { width: 100%; padding: 10px 3%; }
+.maintain { display: none; }
 
 .btn-radio { width: 44px; height: 44px; display: block; }
 .btn-radio:before { background: url(images/site.png) no-repeat -304px -156px; background-size: 320px auto; display: block; content: ''; width: 18px; height: 18px; margin: 13px; }

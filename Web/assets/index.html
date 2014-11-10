@@ -1,14 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <title>猜猜我的时尚秘密</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta charset="utf-8" />
-    <title>猜猜我的时尚秘密</title>
     <link href="anim.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="js/seajs/sea.js"></script>
 </head>
 <body>
+    <div class="maintain"><img src="http://222.73.41.2:8085/assets/images/bottom.png'" /> <p>猜猜我的时尚秘密</p>
+    </div>
     <script type="text/javascript">
         seajs.config({
             alias: {
@@ -16,7 +18,7 @@
             }
         });
 
-        seajs.use(['$','sl/sl','app'],function($,sl,_app) {
+        seajs.use(['$','sl/sl','app'],function ($,sl,_app) {
             var m=location.hash.match("/share/(.+)");
             if(m&&m[1]) {
                 location.href="index1.html#/?share="+m[1];
@@ -52,7 +54,7 @@
         document.addEventListener('WeixinJSBridgeReady',function onBridgeReady() {
 
             // 分享到朋友圈
-            WeixinJSBridge.on('menu:share:timeline',function(argv) {
+            WeixinJSBridge.on('menu:share:timeline',function (argv) {
                 WeixinJSBridge.invoke('shareTimeline',{
                     "img_url": 'http://222.73.41.2:8085/assets/images/bottom.png',
                     "img_width": "160",
@@ -60,7 +62,7 @@
                     "link": location.href,
                     "desc": "猜猜我的时尚秘密",
                     "title": "猜猜我的时尚秘密"
-                },function(res) { });
+                },function (res) { });
             });
         },false)
     </script>
