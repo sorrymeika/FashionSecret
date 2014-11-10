@@ -22,11 +22,11 @@
         onShow: function() {
             var that=this;
 
-            that.$('.js_main').css({ height: 100,minHeight: 100,overflow: 'hidden' }).iScroll({
-                bounceTop: false,
-                bounceTop: false,
-                bounce: false
-            }).iScroll("refresh");
+//            that.$('.js_main').css({ height: 100,minHeight: 100,overflow: 'hidden' }).iScroll({
+//                bounceTop: false,
+//                bounceTop: false,
+//                bounce: false
+//            }).iScroll("refresh");
         },
 
         onDestory: function() {
