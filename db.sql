@@ -55,3 +55,5 @@ create table Settings(
 Name varchar(30) primary key,
 Value varchar(200)
 )
+
+alter table Users add CityID int

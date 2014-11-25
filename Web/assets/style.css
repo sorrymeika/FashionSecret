@@ -198,9 +198,11 @@ ul.table li > p { display: table-cell; text-align: center; padding-top: 5px; }
 .sharedialog li input, .addressdialog li input { background: #f7f5f6; border: 0; height: 33px; padding-left: 10px; width: 100%; }
 .sharedialog .action, .addressdialog .action { text-align: center; margin-top: 12px; }
 .sharedialog .btn_red, .addressdialog .btn_red { }
+.sharedialog li select, .addressdialog li select{height: 30px;  width: 100%;}
 
 .sharedialog .btn_close{ padding-top: 8px;padding-left: 10px;position: absolute; right: -20px; top: -20px;width: 44px; height: 44px; display: block; }
 .sharedialog .btn_close:before { display: block; content: ''; background: url(images/site.png) -25px 0px no-repeat; background-size: 320px auto; width: 25px; height: 25px;   }
+.sharedialog { height: 328px; }
 
 .finishimg { margin: 0 auto; width: 210px; padding-top: 0px; }
 .finishimg:before { width: 210px; height:150px;background: url(images/finish.png) 0px 0px no-repeat; background-size: 100% auto; content: ''; display: block; }

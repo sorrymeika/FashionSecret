@@ -6,6 +6,7 @@
     string email = req.String("email", false, "请填写邮箱", @"^[-_a-zA-Z0-9\.]+@([-_a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,3}$", "邮箱格式不正确");
     string name = req.String("name", false, "请填写姓名");
     int noteId = req.Int("noteId", false, "请传入秘密编号");
+    int cityId = req.Int("cityId", false, "请传入地区");
     string mobile = req.String("mobile", false, "请填写手机", @"^1\d{10}$", "请填写正确的手机号");
 
     if (req.HasError)
@@ -33,7 +34,7 @@
     }
     else
     {
-        SQL.Execute("insert into Users (Email,Name,CreationTime,Mobile) values (@p0,@p1,@p2,@p3)", out userid, email, name, DateTime.Now, mobile);
+        SQL.Execute("insert into Users (Email,Name,CreationTime,Mobile,CityID) values (@p0,@p1,@p2,@p3,@p4)", out userid, email, name, DateTime.Now, mobile, cityId);
         SQL.Execute("update Note set UserID=@p1 where NoteID=@p0", noteId, userid);
     }
 

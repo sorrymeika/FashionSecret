@@ -37,8 +37,8 @@
         int total;
         var data = SQL.QueryPage(
             new[] { "UserID" },
-            "UserID,a.CreationTime,a.Name,a.Email",
-            "Users a",
+            "UserID,a.CreationTime,a.Name,a.Email,a.Mobile,CTY_NAME as CityName",
+            "Users a join RCITY b on CityID=CTY_ID",
             where,
             page,
             pageSize,
@@ -76,9 +76,9 @@
             parameters.Add(keywords);
         }
 
-        var data = SQL.Query("select Name as 用户姓名,Email as 用户邮箱,CreationTime as 注册时间 from Users where " + where + " order by UserID desc", parameters.ToArray());
+        var data = SQL.Query("select Name as 用户姓名,Email as 用户邮箱,Mobile as 手机,CTY_NAME as 城市,CreationTime as 注册时间 from Users a join RCITY b on CityID=CTY_ID where " + where + " order by UserID desc", parameters.ToArray());
 
-        ExcelUtil.doExport(data, Server.MapPath("~/upload/user.xls"));
+        ExcelUtil.Export(data, Server.MapPath("~/upload/user.xls"));
 
         Response.Redirect(Url.Content("~/upload/user.xls"));
         return;
@@ -90,12 +90,12 @@
 <div id="toolbar" class="toolbar"></div>
 <div id="grid"></div>
 <script>
-    seajs.use(['jquery','lib/buttons','lib/popup','lib/grid','lib/global.css'],function ($,Buttons,popup) {
+    seajs.use(['jquery','lib/buttons','lib/popup','lib/grid','lib/global.css'],function($,Buttons,popup) {
 
         var buttons=new Buttons("#toolbar",[{
             text: "导出搜索结果",
             ico: "view",
-            click: function () {
+            click: function() {
                 window.open("?action=export&dateFrom="+grid.searchInput('dateFrom').val()
 					+"&dateTo="+grid.searchInput('dateTo').val()+"&keywords="+grid.searchInput('keywords').val());
             }
@@ -104,7 +104,7 @@
         var grid=$('#grid').grid({
             pageEnabled: true,
             search: {
-                beforeSend: function () {
+                beforeSend: function() {
                 },
                 url: '?action=get',
                 data: {
@@ -121,7 +121,7 @@
                     }
                 }
             },
-            onRowSelect: function (row,data) {
+            onRowSelect: function(row,data) {
             },
             columns: [{
                 text: '编号',
@@ -134,6 +134,14 @@
             },{
                 text: "邮箱",
                 bind: 'Email',
+                width: 6
+            },{
+                text: "手机",
+                bind: 'Mobile',
+                width: 6
+            },{
+                text: "地区",
+                bind: 'CityName',
                 width: 6
             },{
                 text: "注册日期",

@@ -17,12 +17,39 @@
                     this.style.display='none';
                 });
             },
+            'change .js_province': function(e) {
+                var value=e.currentTarget.value,
+                    $city=this.$('.js_city'),
+                city=$city[0];
+                city.options.length=0;
+
+                if(!value) {
+                    city.options.add(new Option('',""));
+                } else {
+                    city.options.add(new Option('正在载入...',""));
+
+                    $.ajax({
+                        url: app.url('/json/region?action=city&provid='+value),
+                        dataType: 'json',
+                        success: function(res) {
+                            city.options[0].text=('请选择');
+                            $.each(res.data,function(i,item) {
+                                city.options.add(new Option(item.name,item.id));
+                            });
+                        },
+                        error: function(res) {
+                            city.options[0].text=(res&&res.msg||'网络错误');
+                        }
+                    });
+                }
+            },
             'tap .js_accept': function() {
                 var that=this,
                     data={
                         noteId: base64.decode(that.route.data.data).split('|')[0],
                         name: that.$('.js_name').val(),
                         email: that.$('.js_email').val(),
+                        cityid: that.$('.js_city')[0].value,
                         mobile: that.$('.js_mobile').val()
                     };
 
@@ -68,6 +95,26 @@
         },
         onCreate: function() {
             var that=this;
+
+            var $province=that.$('.js_province'),
+                province=$province[0];
+
+            province.options.length=0;
+            province.options.add(new Option('正在载入...',""));
+
+            $.ajax({
+                url: app.url('/json/region?action=province'),
+                dataType: 'json',
+                success: function(res) {
+                    province.options[0].text=('请选择');
+                    $.each(res.data,function(i,item) {
+                        province.options.add(new Option(item.name,item.id));
+                    });
+                },
+                error: function(res) {
+                    province.options[0].text=(res&&res.msg||'网络错误');
+                }
+            });
         },
         onStart: function() {
         },
